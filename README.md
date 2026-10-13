@@ -6,3 +6,6 @@ Seminarium licencjackie: Zaawansowana analiza i eksploracja danych, dr Adrian Ka
 Autorzy: Grzegorz Dudkiewicz, Piotr Orzeł, Maja Zontek
 
 Wydział Matematyki, Fizyki i Informatyki Uniwersytetu Gdańskiego
+
+________________________________________________________________
+link do wrzucania zadań dla studentów: https://drive.google.com/drive/u/0/folders/1w3d0p_gCD49CM_WHfohcnO7SVVemomAq

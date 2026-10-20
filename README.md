@@ -78,13 +78,18 @@ Syntetyczny zbiór 10 000 utworów z lat 2010–2025, opisanych cechami audio w 
 ├── prezentacja/                     # slajdy (PDF + źródła)
 ├── dane/
 │   └── viral_songs.csv
-├── notebooki/
+├── gotowe-notebooki/
 │   ├── 00_eda.ipynb                 # eksploracyjna analiza danych
 │   ├── 01_regresja_streams.ipynb    # model 1
 │   ├── 02_klasyfikacja_viral.ipynb  # model 2
 │   └── 03_klasyfikacja_genre.ipynb  # model 3
 ├── requirements.txt
-└── README.md
+├── README.md
+├── zadania/
+│   ├── 00_eda_zadanie.ipynb                 # eksploracyjna analiza danych
+│   ├── 01_regresja_streams_zadanie.ipynb    # model 1
+│   ├── 02_klasyfikacja_viral_zadanie.ipynb  # model 2
+    └── 03_klasyfikacja_genre_zadanie.ipynb  # model 3
 ```
 
 ## Materiały do pobrania

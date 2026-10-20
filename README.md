@@ -1,6 +1,9 @@
 # Uczenie maszynowe w Pythonie — referat seminaryjny
 
-Projekt dotyczący uczenia maszynowego, przygotowany na seminarium licencjackie: prezentacja oraz zadania z kodem w Pythonie (scikit-learn).
+Projekt dotyczący uczenia maszynowego, przygotowany na seminarium licencjackie. Składa się z dwóch części:
+
+1. **Teoria**: prezentacja oparta na rozdziale 15 książki R. Johanssona *Numerical Python*.
+2. **Ćwiczenia z modelowania**: zbiór `viral_songs.csv`, regresja liczby odtworzeń, klasyfikacja viralowości i klasyfikacja gatunku muzycznego.
 
 | | |
 |---|---|
@@ -11,33 +14,78 @@ Projekt dotyczący uczenia maszynowego, przygotowany na seminarium licencjackie:
 | **Jednostka** | Wydział Matematyki, Fizyki i Informatyki Uniwersytetu Gdańskiego |
 | **Autorzy** | Grzegorz Dudkiewicz, Piotr Orzeł, Maja Zontek |
 
-## Zakres materiału
+## Część teoretyczna
 
-1. **Wprowadzenie**: uczenie maszynowe a modelowanie statystyczne; uczenie nadzorowane i nienadzorowane
-2. **Pojęcia podstawowe**: podział train/test, walidacja krzyżowa (k-fold, leave-one-out), ekstrakcja cech, redukcja wymiaru (PCA)
-3. **Regresja**: przeuczenie, regularyzacja (Ridge, LASSO, Elastic Net), dobór parametru α przez walidację krzyżową
-4. **Klasyfikacja**: regresja logistyczna, drzewa decyzyjne, k-NN, SVM, Random Forest; metryki (macierz pomyłek, precision, recall, F1)
-5. **Klasteryzacja**: K-means, mean-shift, ocena zgodności klastrów z etykietami
-6. **Etyka danych**: przypadek zbioru Boston Housing, zmienne proxy, fairness
+Na podstawie: R. Johansson, *Numerical Python*, wyd. 2, Apress 2019, rozdz. 15 *Machine Learning*.
+
+1. Uczenie maszynowe a modelowanie statystyczne
+2. Uczenie nadzorowane i nienadzorowane
+3. Walidacja krzyżowa (podział train/test, k-fold, leave-one-out)
+4. Ekstrakcja cech, redukcja wymiaru (PCA)
+5. Regresja: przeuczenie, regularyzacja (Ridge, LASSO, Elastic Net), dobór α
+6. Klasyfikacja: regresja logistyczna, drzewa decyzyjne, k-NN, SVM, Random Forest; metryki
+7. Klasteryzacja: K-means, mean-shift
+
+## Część praktyczna: ćwiczenia z modelowania
+
+### Zbiór danych: `viral_songs.csv`
+
+10 000 utworów opisanych 17 kolumnami.
+
+| Kolumna | Typ | Opis |
+|---|---|---|
+| `track_id`, `track_name` | tekst | identyfikator i nazwa utworu |
+| `artist` | tekst | wykonawca |
+| `genre` | kategoria | gatunek, 10 klas: Rock, Hip-Hop, Latin, Pop, Indie, Electronic, Classical, Jazz, R&B, Country |
+| `release_year` | int | rok wydania (2010–2025) |
+| `duration_sec` | int | długość utworu w sekundach |
+| `danceability`, `energy`, `valence` | float [0, 1] | taneczność, energia, pozytywny nastrój |
+| `acousticness`, `instrumentalness`, `speechiness`, `liveness` | float [0, 1] | akustyczność, instrumentalność, udział mowy, nagranie na żywo |
+| `tempo_bpm` | float | tempo (BPM) |
+| `loudness_db` | float | głośność (dB) |
+| `streams` | int | liczba odtworzeń |
+| `viral` | 0/1 | czy utwór stał się viralem |
+
+### Modele
+
+| # | Zadanie | Zmienna celu | Pytanie badawcze |
+|---|---|---|---|
+| 1 | Regresja | `streams` | Jakie cechy utworu wpływają na liczbę odtworzeń? |
+| 2 | Klasyfikacja binarna | `viral` | Czy da się przewidzieć, że utwór stanie się viralem? |
+| 3 | Klasyfikacja wieloklasowa | `genre` | Czy gatunki muzyczne mają charakterystyczne cechy audio? |
+
+### Przebieg ćwiczeń
+
+1. Eksploracyjna analiza danych
+2. Przygotowanie cech
+3. Trenowanie i porównanie modeli:
+   - regresja: `LinearRegression`, `Ridge`, `Lasso`, `RandomForestRegressor`
+   - klasyfikacja: `LogisticRegression`, `DecisionTreeClassifier`, `KNeighborsClassifier`, `SVC`, `RandomForestClassifier`
+4. Ewaluacja na zbiorze testowym
+5. Interpretacja wyników i wnioski
 
 ## Struktura repozytorium
 
 ```
 .
-├── prezentacja/        # slajdy (PDF + źródła)
-├── notebooki/          # przykłady z prezentacji (Jupyter)
-├── zadania/            # zadania dla studentów
-├── dane/               # dodatkowe zbiory danych (jeśli nie są pobierane z kodu)
+├── prezentacja/                     # slajdy (PDF + źródła)
+├── dane/
+│   └── viral_songs.csv
+├── notebooki/
+│   ├── 00_eda.ipynb                 # eksploracyjna analiza danych
+│   ├── 01_regresja_streams.ipynb    # model 1
+│   ├── 02_klasyfikacja_viral.ipynb  # model 2
+│   └── 03_klasyfikacja_genre.ipynb  # model 3
 ├── requirements.txt
 └── README.md
 ```
 
 ## Materiały do pobrania
 
-Prezentacja i kody (notebooki z przykładami oraz zadania) są dostępne do pobrania na Google Drive:
+Prezentacja i kody są dostępne do pobrania na Google Drive:
 **[📁 Materiały na Google Drive](https://drive.google.com/drive/u/0/folders/1w3d0p_gCD49CM_WHfohcnO7SVVemomAq)**
 
-Te same pliki znajdują się w repozytorium, w katalogach [`prezentacja/`](prezentacja/), [`notebooki/`](notebooki/) i [`zadania/`](zadania/).
+Te same pliki znajdują się w repozytorium, w katalogach [`prezentacja/`](prezentacja/), [`dane/`](dane/) i [`notebooki/`](notebooki/).
 
 ## Uruchomienie
 
@@ -63,7 +111,13 @@ pip install -r requirements.txt
 jupyter lab
 ```
 
-**Google Colab:** `File → Open notebook → GitHub`, wpisz `mzntk/ml-seminarium-projekt` i wybierz notebook. Brakujące pakiety doinstaluj przez `!pip install ...`.
+**Google Colab:** `File → Open notebook → GitHub`, wpisz `mzntk/ml-seminarium-projekt` i wybierz notebook. Dane można wczytać bezpośrednio z repozytorium:
+
+```python
+import pandas as pd
+url = "https://raw.githubusercontent.com/mzntk/ml-seminarium-projekt/main/dane/viral_songs.csv"
+df = pd.read_csv(url)
+```
 
 ### `requirements.txt`
 ```
@@ -75,20 +129,8 @@ scikit-learn>=1.4
 jupyterlab
 ```
 
-## Zbiory danych
-
-| Zbiór | Zadanie | Źródło |
-|---|---|---|
-| Iris | klasyfikacja, klasteryzacja | `sklearn.datasets.load_iris` |
-| California Housing | regresja | `sklearn.datasets.fetch_california_housing` (wymaga internetu przy pierwszym uruchomieniu) |
-| dane syntetyczne | regresja z regularyzacją | `sklearn.datasets.make_regression` |
-
-Zbiór Boston Housing (`load_boston`) został usunięty ze scikit-learn w wersji 1.2 z powodów etycznych i nie jest używany w projekcie. Jego historię omawiamy w części prezentacji poświęconej etyce danych.
-
 ## Źródła
 
 - R. Johansson, *Numerical Python: Scientific Computing and Data Science Applications with Numpy, SciPy and Matplotlib*, wyd. 2, Apress, 2019, rozdz. 15
 - T. Hastie, R. Tibshirani, J. Friedman, *The Elements of Statistical Learning*, Springer
 - [Dokumentacja scikit-learn](https://scikit-learn.org/stable/)
-
-Kod przykładów z książki Johanssona dostosowaliśmy do aktualnej wersji scikit-learn (1.x): usunięte parametry, nowe wartości domyślne, zamiana zbioru Boston na California Housing.

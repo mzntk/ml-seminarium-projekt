@@ -85,10 +85,10 @@ Syntetyczny zbiór 10 000 utworów z lat 2010–2025, opisanych cechami audio w 
 │   └── 03_klasyfikacja_genre.ipynb  # model 3
 ├── requirements.txt
 ├── README.md
-├── zadania/
-│   ├── 00_eda_zadanie.ipynb                 # eksploracyjna analiza danych
-│   ├── 01_regresja_streams_zadanie.ipynb    # model 1
-│   ├── 02_klasyfikacja_viral_zadanie.ipynb  # model 2
+└── zadania/
+    ├── 00_eda_zadanie.ipynb                 # eksploracyjna analiza danych
+    ├── 01_regresja_streams_zadanie.ipynb    # model 1
+    ├── 02_klasyfikacja_viral_zadanie.ipynb  # model 2
     └── 03_klasyfikacja_genre_zadanie.ipynb  # model 3
 ```
 

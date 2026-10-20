@@ -28,23 +28,30 @@ Na podstawie: R. Johansson, *Numerical Python*, wyd. 2, Apress 2019, rozdz. 15 *
 
 ## Część praktyczna: ćwiczenia z modelowania
 
+
 ### Zbiór danych: `viral_songs.csv`
 
-10 000 utworów opisanych 17 kolumnami.
+Syntetyczny zbiór 10 000 utworów z lat 2010–2025, opisanych cechami audio w stylu Spotify. Rozkłady cech zależą od gatunku i są wzorowane na opublikowanych statystykach Spotify. Licencja: CC0 (domena publiczna).
 
-| Kolumna | Typ | Opis |
-|---|---|---|
-| `track_id`, `track_name` | tekst | identyfikator i nazwa utworu |
-| `artist` | tekst | wykonawca |
-| `genre` | kategoria | gatunek, 10 klas: Rock, Hip-Hop, Latin, Pop, Indie, Electronic, Classical, Jazz, R&B, Country |
-| `release_year` | int | rok wydania (2010–2025) |
-| `duration_sec` | int | długość utworu w sekundach |
-| `danceability`, `energy`, `valence` | float [0, 1] | taneczność, energia, pozytywny nastrój |
-| `acousticness`, `instrumentalness`, `speechiness`, `liveness` | float [0, 1] | akustyczność, instrumentalność, udział mowy, nagranie na żywo |
-| `tempo_bpm` | float | tempo (BPM) |
-| `loudness_db` | float | głośność (dB) |
-| `streams` | int | liczba odtworzeń |
-| `viral` | 0/1 | czy utwór stał się viralem |
+| Kolumna | Opis |
+|---|---|
+| `track_id` | unikalny identyfikator utworu |
+| `track_name` | syntetyczna nazwa utworu |
+| `artist` | syntetyczna nazwa wykonawcy |
+| `genre` | główny gatunek (10 klas: Rock, Hip-Hop, Latin, Pop, Indie, Electronic, Classical, Jazz, R&B, Country) |
+| `release_year` | rok wydania (2010–2025) |
+| `duration_sec` | długość utworu w sekundach |
+| `danceability` | wynik 0–1: na ile utwór nadaje się do tańca |
+| `energy` | wynik 0–1: intensywność i aktywność |
+| `valence` | wynik 0–1: pozytywny nastrój utworu |
+| `tempo_bpm` | tempo w uderzeniach na minutę (BPM) |
+| `acousticness` | wynik 0–1: pewność, że utwór jest akustyczny |
+| `instrumentalness` | wynik 0–1: przewidywany brak wokalu |
+| `speechiness` | wynik 0–1: obecność słów mówionych |
+| `liveness` | wynik 0–1: obecność publiczności (nagranie na żywo) |
+| `loudness_db` | ogólna głośność w dB |
+| `streams` | łączna liczba odtworzeń |
+| `viral` | 1, jeśli utwór stał się viralem, 0 w przeciwnym razie |
 
 ### Modele
 
